@@ -6,3 +6,7 @@ from selene import browser
 def browser_management():
     browser.config.base_url = 'https://demoqa.com'
     browser.config.driver_name = 'firefox'
+
+    yield
+
+    browser.quit()
