@@ -3,6 +3,7 @@ from selene import be, have, browser
 
 def test1():
     browser.open('/automation-practice-form')
+
     # вводим имя, фамилию и имейл
     browser.element('[id="firstName"]').should(be.blank).type('Klim')
     browser.element('[id="lastName"]').should(be.blank).type('Trotsenko')
@@ -20,6 +21,8 @@ def test1():
     # выбираем день
     browser.element('[aria-label = "Choose Monday, January 2nd, 1989"]').click()
     # подтверждаем номер телефон
-    browser.element('[id="userNumber"]').click().press_enter()
+    browser.element('[id="userNumber"]').press_enter()
     # проверяем успешность регистрации
     browser.element('#example-modal-sizes-title-lg').should(have.text("Thanks for submitting the form"))
+    browser.element('.modal-body').should(
+        have.text("Klim Trotsenko" and "123@123.ru" and "Male" and "8987654321" and "02 January,1989"))
